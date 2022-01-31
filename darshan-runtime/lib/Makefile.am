@@ -77,6 +77,19 @@ endif
 darshan-apxc.c:
 	$(LN_S) $(apxc_root)/lib/darshan-apxc.c .
 
+apss_root = $(top_srcdir)/../modules/autoperf/apss
+if BUILD_APSS_MODULE
+   include_HEADERS += $(apss_root)/darshan-apss-log-format.h \
+                      $(apss_root)/lib/darshan-apss-utils.h
+   BUILT_SOURCES += darshan-apss.c
+   CLEANFILES += darshan-apss.c
+   C_SRCS += darshan-apss.c
+   AM_CPPFLAGS += -DDARSHAN_USE_APSS \
+                  -I$(apss_root) -I$(apss_root)/lib
+endif
+darshan-apss.c:
+	$(LN_S) $(apss_root)/lib/darshan-apss.c .
+
 apmpi_root = $(top_srcdir)/../modules/autoperf/apmpi
 if BUILD_APMPI_MODULE
    include_HEADERS += $(apmpi_root)/darshan-apmpi-log-format.h

@@ -99,6 +99,17 @@ if test "x$enable_darshan_util" = xyes ; then
                       [AC_MSG_ERROR([The autoperf APXC module is not present])],
                       [-]) # this last part tells it to only check for presence
    fi
+   AC_ARG_ENABLE([apss_mod],
+      [AS_HELP_STRING([--enable-apss-mod],
+                      [enables compilation and use of the AutoPerf Cray XC module])],
+      [], [enable_apss_mod=no]
+   )
+   if test "x$enable_apss_mod" = xyes; then
+      AC_CHECK_HEADER([${ac_abs_confdir}/../modules/autoperf/apss/darshan-apss-log-format.h],
+                      DARSHAN_USE_APSS=1,
+                      [AC_MSG_ERROR([The autoperf APSS module is not present])],
+                      [-]) # this last part tells it to only check for presence
+   fi
    AC_ARG_ENABLE([apmpi_mod],
       [AS_HELP_STRING([--enable-apmpi-mod],
                       [enables compilation and use of the AutoPerf MPI module])],
@@ -127,6 +138,7 @@ fi
 
 AM_CONDITIONAL(DARSHAN_ENABLE_PYDARSHAN, [test "x$enable_pydarshan" = xyes])
 AM_CONDITIONAL(DARSHAN_USE_APXC, [test "x$enable_apxc_mod" = xyes])
+AM_CONDITIONAL(DARSHAN_USE_APSS, [test "x$enable_apss_mod" = xyes])
 AM_CONDITIONAL(DARSHAN_USE_APMPI, [test "x$enable_apmpi_mod" = xyes])
 
 AC_CONFIG_FILES([Makefile \
@@ -142,6 +154,7 @@ if test "x$enable_darshan_util" = xyes ; then
            C compiler                    - $CC
            Python module and tools       - $enable_pydarshan
            AUTOPERF MPI  module support  - $enable_apmpi_mod
-           AUTOPERF APXC module support  - $enable_apxc_mod"
+           AUTOPERF APXC module support  - $enable_apxc_mod
+           AUTOPERF APSS module support  - $enable_apss_mod"
 fi
 

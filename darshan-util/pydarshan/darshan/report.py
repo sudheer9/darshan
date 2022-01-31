@@ -526,6 +526,8 @@ class DarshanReport(object):
             self.mod_read_all_apmpi_records(dtype=dtype)
         if "APXC" in self.data['modules']:
             self.mod_read_all_apxc_records(dtype=dtype)
+        if "APSS" in self.data['modules']:
+            self.mod_read_all_apss_records(dtype=dtype)
         
         return
 
@@ -578,7 +580,7 @@ class DarshanReport(object):
             None
 
         """
-        unsupported =  ['DXT_POSIX', 'DXT_MPIIO', 'LUSTRE', 'APMPI', 'APXC']
+        unsupported =  ['DXT_POSIX', 'DXT_MPIIO', 'LUSTRE', 'APMPI', 'APXC', 'APSS']
 
         if mod in unsupported:
             if warnings:
@@ -742,6 +744,53 @@ class DarshanReport(object):
         if self.lookup_name_records:
             self.update_name_records()
 
+    def mod_read_all_apss_records(self, mod="APSS", dtype=None, warnings=True):
+        """ 
+        Reads all APSS records for provided module.
+
+        Args:
+            mod (str): Identifier of module to fetch all records
+            dtype (str): 'numpy' for ndarray (default), 'dict' for python dictionary
+
+        Return:
+            None
+
+        """
+        if mod not in self.data['modules']:
+            if warnings:
+                logger.warning(f" Skipping. Log does not contain data for mod: {mod}")
+            return
+
+        supported =  ['APSS'] 
+        if mod not in supported:
+            if warnings:
+                logger.warning(f" Skipping. Unsupported module: {mod} in in mod_read_all_apss_records(). Supported: {supported}")
+            # skip mod
+            return
+
+        # handling options
+        dtype = dtype if dtype else self.dtype
+
+        self.records[mod] = DarshanRecordCollection(mod=mod, report=self)
+        cn = backend.counter_names(mod)
+
+        # update module metadata
+        self._modules[mod]['num_records'] = 0
+        if mod not in self.counters:
+            self.counters[mod] = {}
+
+        # fetch records
+        # fetch header record
+        rec = backend.log_get_apss_record(self.log, mod, "HEADER", dtype=dtype)
+        while rec != None:
+            self.records[mod].append(rec)
+            self.data['modules'][mod]['num_records'] += 1
+
+            # fetch next
+            rec = backend.log_get_apss_record(self.log, mod, "PERF", dtype=dtype)
+
+        if self.lookup_name_records:
+            self.update_name_records()
 
     def mod_read_all_dxt_records(self, mod, dtype=None, warnings=True, reads=True, writes=True):
         """

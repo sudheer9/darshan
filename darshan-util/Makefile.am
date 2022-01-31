@@ -101,6 +101,19 @@ endif
 darshan-apxc-logutils.c:
 	$(LN_S) $(apxc_root)/util/darshan-apxc-logutils.c .
 
+apss_root = $(top_srcdir)/../modules/autoperf/apss
+if DARSHAN_USE_APSS
+   include_HEADERS += $(apss_root)/darshan-apss-log-format.h \
+                      $(apss_root)/util/darshan-apss-logutils.h
+   BUILT_SOURCES += darshan-apss-logutils.c
+   CLEANFILES += darshan-apss-logutils.c
+   libdarshan_util_la_SOURCES += darshan-apss-logutils.c
+   AM_CPPFLAGS += -DDARSHAN_USE_APSS \
+                  -I$(apss_root) -I$(apss_root)/util
+endif
+darshan-apss-logutils.c:
+	$(LN_S) $(apss_root)/util/darshan-apss-logutils.c .
+
 apmpi_root = $(top_srcdir)/../modules/autoperf/apmpi
 if DARSHAN_USE_APMPI
    include_HEADERS += $(apmpi_root)/darshan-apmpi-log-format.h \
