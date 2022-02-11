@@ -526,8 +526,8 @@ class DarshanReport(object):
             self.mod_read_all_apmpi_records(dtype=dtype)
         if "APXC" in self.data['modules']:
             self.mod_read_all_apxc_records(dtype=dtype)
-        if "APSS" in self.data['modules']:
-            self.mod_read_all_apss_records(dtype=dtype)
+        if "APCXI" in self.data['modules']:
+            self.mod_read_all_apcxi_records(dtype=dtype)
         
         return
 
@@ -580,7 +580,7 @@ class DarshanReport(object):
             None
 
         """
-        unsupported =  ['DXT_POSIX', 'DXT_MPIIO', 'LUSTRE', 'APMPI', 'APXC', 'APSS']
+        unsupported =  ['DXT_POSIX', 'DXT_MPIIO', 'LUSTRE', 'APMPI', 'APXC', 'APCXI']
 
         if mod in unsupported:
             if warnings:
@@ -744,9 +744,9 @@ class DarshanReport(object):
         if self.lookup_name_records:
             self.update_name_records()
 
-    def mod_read_all_apss_records(self, mod="APSS", dtype=None, warnings=True):
+    def mod_read_all_apcxi_records(self, mod="APCXI", dtype=None, warnings=True):
         """ 
-        Reads all APSS records for provided module.
+        Reads all APCXI records for provided module.
 
         Args:
             mod (str): Identifier of module to fetch all records
@@ -761,10 +761,10 @@ class DarshanReport(object):
                 logger.warning(f" Skipping. Log does not contain data for mod: {mod}")
             return
 
-        supported =  ['APSS'] 
+        supported =  ['APCXI'] 
         if mod not in supported:
             if warnings:
-                logger.warning(f" Skipping. Unsupported module: {mod} in in mod_read_all_apss_records(). Supported: {supported}")
+                logger.warning(f" Skipping. Unsupported module: {mod} in in mod_read_all_apcxi_records(). Supported: {supported}")
             # skip mod
             return
 
@@ -781,13 +781,13 @@ class DarshanReport(object):
 
         # fetch records
         # fetch header record
-        rec = backend.log_get_apss_record(self.log, mod, "HEADER", dtype=dtype)
+        rec = backend.log_get_apcxi_record(self.log, mod, "HEADER", dtype=dtype)
         while rec != None:
             self.records[mod].append(rec)
             self.data['modules'][mod]['num_records'] += 1
 
             # fetch next
-            rec = backend.log_get_apss_record(self.log, mod, "PERF", dtype=dtype)
+            rec = backend.log_get_apcxi_record(self.log, mod, "PERF", dtype=dtype)
 
         if self.lookup_name_records:
             self.update_name_records()

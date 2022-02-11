@@ -101,18 +101,18 @@ endif
 darshan-apxc-logutils.c:
 	$(LN_S) $(apxc_root)/util/darshan-apxc-logutils.c .
 
-apss_root = $(top_srcdir)/../modules/autoperf/apss
-if DARSHAN_USE_APSS
-   include_HEADERS += $(apss_root)/darshan-apss-log-format.h \
-                      $(apss_root)/util/darshan-apss-logutils.h
-   BUILT_SOURCES += darshan-apss-logutils.c
-   CLEANFILES += darshan-apss-logutils.c
-   libdarshan_util_la_SOURCES += darshan-apss-logutils.c
-   AM_CPPFLAGS += -DDARSHAN_USE_APSS \
-                  -I$(apss_root) -I$(apss_root)/util
+apcxi_root = $(top_srcdir)/../modules/autoperf/apcxi
+if DARSHAN_USE_APCXI
+   include_HEADERS += $(apcxi_root)/darshan-apcxi-log-format.h \
+                      $(apcxi_root)/util/darshan-apcxi-logutils.h
+   BUILT_SOURCES += darshan-apcxi-logutils.c
+   CLEANFILES += darshan-apcxi-logutils.c
+   libdarshan_util_la_SOURCES += darshan-apcxi-logutils.c
+   AM_CPPFLAGS += -DDARSHAN_USE_APCXI \
+                  -I$(apcxi_root) -I$(apcxi_root)/util
 endif
-darshan-apss-logutils.c:
-	$(LN_S) $(apss_root)/util/darshan-apss-logutils.c .
+darshan-apcxi-logutils.c:
+	$(LN_S) $(apcxi_root)/util/darshan-apcxi-logutils.c .
 
 apmpi_root = $(top_srcdir)/../modules/autoperf/apmpi
 if DARSHAN_USE_APMPI

@@ -101,8 +101,8 @@ extern void bgq_runtime_initialize();
 #ifdef DARSHAN_USE_APXC
 extern void apxc_runtime_initialize();
 #endif
-#ifdef DARSHAN_USE_APSS
-extern void apss_runtime_initialize();
+#ifdef DARSHAN_USE_APCXI
+extern void apcxi_runtime_initialize();
 #endif
 
 /* array of init functions for modules which need to be statically
@@ -116,8 +116,8 @@ void (*mod_static_init_fns[])(void) =
 #ifdef DARSHAN_USE_APXC
     &apxc_runtime_initialize,
 #endif
-#ifdef DARSHAN_USE_APSS
-    &apss_runtime_initialize,
+#ifdef DARSHAN_USE_APCXI
+    &apcxi_runtime_initialize,
 #endif
     NULL
 };

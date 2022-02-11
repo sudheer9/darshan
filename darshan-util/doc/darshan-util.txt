@@ -56,9 +56,9 @@ method of compilation.
 The `--enable-shared` argument to configure can be used to enable
 compilation of a shared version of the darshan-util library.
 
-The `--enable-apmpi-mod`, `--enable-apxc-mod` and `--enable-apss-mod` configure
+The `--enable-apmpi-mod`, `--enable-apxc-mod` and `--enable-apcxi-mod` configure
 arguments must be specified to build darshan-util with support for AutoPerf
-APMPI, APXC and APSS modules, respectively.
+APMPI, APXC and APCXI modules, respectively.
 
 [NOTE]
 ====
@@ -508,19 +508,19 @@ execution time.
 | APXC_AR_RTR_PT_x_y_INQ_PRF_REQ_ROWBUS_STALL_CNT | stalls on x y tile for router-nic ports
 |====
 
-.APSS module per-router record (if enabled, for HPE Slingshot systems)
+.APCXI module per-router record (if enabled, for HPE Slingshot systems)
 [cols="40%,60%",options="header"]
 |====
 | counter name | description
-| APSS_GROUP | group this router is on
-| APSS_CHASSIS | chassis this router is on
-| APSS_SLOT | slot this router is on
-| APSS_BLADE | blade this router is on
-| APSS_NODE | node connected to this router
-| APSS_WIP [0-7] | flits on VCs of x y tile for router-router ports
-| APSS_WIP | stalls on x y tile for router-router ports
-| APSS_WIP [0,4] | flits on VCs of x y tile for router-nic ports
-| APSS_WIP | stalls on x y tile for router-nic ports
+| APCXI_GROUP | group this router is on
+| APCXI_CHASSIS | chassis this router is on
+| APCXI_SLOT | slot this router is on
+| APCXI_BLADE | blade this router is on
+| APCXI_NODE | node connected to this router
+| APCXI_WIP [0-7] | flits on VCs of x y tile for router-router ports
+| APCXI_WIP | stalls on x y tile for router-router ports
+| APCXI_WIP [0,4] | flits on VCs of x y tile for router-nic ports
+| APCXI_WIP | stalls on x y tile for router-nic ports
 |====
 
 .APMPI module header record (if enabled, for MPI applications)

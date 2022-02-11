@@ -313,21 +313,21 @@ if test "x$enable_darshan_runtime" = xyes ; then
    fi
 
    #AUTOPERF SS module
-   AC_ARG_ENABLE([apss-mod],
-      [AS_HELP_STRING([--enable-apss-mod],
-                      [Enables compilation and use of AUTOPERF SS module (requires MPI)])],
-      [], [enable_apss_mod=no]
+   AC_ARG_ENABLE([apcxi-mod],
+      [AS_HELP_STRING([--enable-apcxi-mod],
+                      [Enables compilation and use of AUTOPERF CXI module (requires MPI)])],
+      [], [enable_apcxi_mod=no]
    )
-   if test "x$enable_apss_mod" = xyes ; then
+   if test "x$enable_apcxi_mod" = xyes ; then
       if test "x$ENABLE_MPI" = xno ; then
-         AC_MSG_ERROR([--enable-apss-mod Autoperf Slingshot(Cassini) module requires MPI support])
+         AC_MSG_ERROR([--enable-apcxi-mod Autoperf Slingshot(Cassini) module requires MPI support])
       fi
       abssrcdir=$(readlink -f ${srcdir})
       AC_CHECK_HEADER([papi.h],
                       [with_papi=-lpapi],
                       [AC_MSG_ERROR([Cannot find papi header required for Autoperf SS module])],
                       [])
-      AC_CHECK_HEADER([${abssrcdir}/../modules/autoperf/apss/darshan-apss-log-format.h],
+      AC_CHECK_HEADER([${abssrcdir}/../modules/autoperf/apcxi/darshan-apcxi-log-format.h],
                       [],
                       [AC_MSG_ERROR([The Autoperf XC git submodule is not present])],
                       [-]) # this last part tells it to only check for presence
@@ -700,7 +700,7 @@ else
    enable_mpiio_mod=no
    enable_apmpi_mod=no
    enable_apxc_mod=no
-   enable_apss_mod=no
+   enable_apcxi_mod=no
    enable_hdf5_mod=no
    enable_pnetcdf_mod=no
    enable_bgq_mod=no
@@ -726,7 +726,7 @@ AM_CONDITIONAL(BUILD_LUSTRE_MODULE, [test "x$enable_lustre_mod"  = xyes])
 AM_CONDITIONAL(BUILD_MDHIM_MODULE,  [test "x$enable_mdhim_mod"   = xyes])
 AM_CONDITIONAL(BUILD_APMPI_MODULE,  [test "x$enable_apmpi_mod"   = xyes])
 AM_CONDITIONAL(BUILD_APXC_MODULE,   [test "x$enable_apxc_mod"    = xyes])
-AM_CONDITIONAL(BUILD_APSS_MODULE,   [test "x$enable_apss_mod"    = xyes])
+AM_CONDITIONAL(BUILD_APCXI_MODULE,   [test "x$enable_apcxi_mod"    = xyes])
 
 AC_CONFIG_FILES(Makefile \
                 darshan-config \
@@ -795,7 +795,7 @@ if test "x$enable_darshan_runtime" = xyes ; then
            MPI-IO        module support  - $enable_mpiio_mod
            AUTOPERF MPI  module support  - $enable_apmpi_mod
            AUTOPERF XC   module support  - $enable_apxc_mod
-           AUTOPERF SS   module support  - $enable_apss_mod
+           AUTOPERF SS   module support  - $enable_apcxi_mod
            HDF5          module support  - $enable_hdf5_mod
            PnetCDF       module support  - $enable_pnetcdf_mod
            BG/Q          module support  - $enable_bgq_mod

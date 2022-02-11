@@ -123,8 +123,8 @@ struct darshan_base_record
 #ifdef DARSHAN_USE_APXC
 #include "darshan-apxc-log-format.h"
 #endif
-#ifdef DARSHAN_USE_APSS
-#include "darshan-apss-log-format.h"
+#ifdef DARSHAN_USE_APCXI
+#include "darshan-apcxi-log-format.h"
 #endif
 #ifdef DARSHAN_USE_APMPI
 #include "darshan-apmpi-log-format.h"
@@ -152,12 +152,12 @@ struct darshan_base_record
 #define __APXC_VER 0
 #define __apxc_logutils NULL
 #endif
-#ifdef DARSHAN_USE_APSS
-#define __APSS_VER APSS_VER
-#define __apss_logutils &apss_logutils
+#ifdef DARSHAN_USE_APCXI
+#define __APCXI_VER APCXI_VER
+#define __apcxi_logutils &apcxi_logutils
 #else
-#define __APSS_VER 0
-#define __apss_logutils NULL
+#define __APCXI_VER 0
+#define __apcxi_logutils NULL
 #endif
 #ifdef DARSHAN_USE_APMPI
 #define __APMPI_VER APMPI_VER
@@ -181,7 +181,7 @@ struct darshan_base_record
     X(DXT_MPIIO_MOD,        "DXT_MPIIO",  DXT_MPIIO_VER,         &dxt_mpiio_logutils) \
     X(DARSHAN_MDHIM_MOD,    "MDHIM",      DARSHAN_MDHIM_VER,     &mdhim_logutils) \
     X(DARSHAN_APXC_MOD,     "APXC", 	  __APXC_VER,            __apxc_logutils) \
-    X(DARSHAN_APSS_MOD,     "APSS", 	  __APSS_VER,            __apss_logutils) \
+    X(DARSHAN_APCXI_MOD,     "APCXI", 	  __APCXI_VER,            __apcxi_logutils) \
     X(DARSHAN_APMPI_MOD,    "APMPI",      __APMPI_VER,           __apmpi_logutils) \
     X(DARSHAN_HEATMAP_MOD,  "HEATMAP",    DARSHAN_HEATMAP_VER,   &heatmap_logutils)
 

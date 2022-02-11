@@ -6,9 +6,9 @@ mkdir -p /io/wheelhouse/${PLAT}
 function repair_wheel {
     wheel="$1"
     if ! auditwheel show "$wheel"; then
-        echo "Skipping non-platform wheel $wheel"
+	echo "Skipping non-platform wheel $wheel"
     else
-        auditwheel repair "$wheel" --plat "$PLAT" -w /io/wheelhouse/${PLAT}/
+	auditwheel repair "$wheel" --plat "$PLAT" -w /io/wheelhouse/${PLAT}/
     fi
 }
 
@@ -18,7 +18,7 @@ yum install -y zlib zlib-devel
 
 # Build and install darshan-util
 cd /darshan/darshan-util
-./configure --enable-shared --enable-autoperf-apxc --enable-autoperf-apss --enable-autoperf-apmpi
+./configure --enable-shared --enable-autoperf-apxc --enable-autoperf-apcxi --enable-autoperf-apmpi
 make install
 make distclean
 

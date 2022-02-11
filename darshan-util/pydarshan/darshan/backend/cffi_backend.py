@@ -30,11 +30,11 @@ except:
   pass
 
 #
-# Optional APSS module
+# Optional APCXI module
 #
 try:
-  from darshan.backend.apss import *
-  addins += get_apss_defs()
+  from darshan.backend.apcxi import *
+  addins += get_apcxi_defs()
 except:
   pass
 
@@ -72,8 +72,8 @@ _structdefs = {
     "STDIO": "struct darshan_stdio_file **",
     "APXC-HEADER": "struct darshan_apxc_header_record **",
     "APXC-PERF": "struct darshan_apxc_perf_record **",
-    "APSS-HEADER": "struct darshan_apss_header_record **",
-    "APSS-PERF": "struct darshan_apss_perf_record **",
+    "APCXI-HEADER": "struct darshan_apcxi_header_record **",
+    "APCXI-PERF": "struct darshan_apcxi_perf_record **",
     "APMPI-HEADER": "struct darshan_apmpi_header_record **",
     "APMPI-PERF": "struct darshan_apmpi_perf_record **",
 }
