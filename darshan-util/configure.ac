@@ -155,6 +155,6 @@ if test "x$enable_darshan_util" = xyes ; then
            Python module and tools       - $enable_pydarshan
            AUTOPERF MPI  module support  - $enable_apmpi_mod
            AUTOPERF APXC module support  - $enable_apxc_mod
-           AUTOPERF APCXI module support  - $enable_apcxi_mod"
+           AUTOPERF APCXI module support - $enable_apcxi_mod"
 fi
 

@@ -312,7 +312,7 @@ if test "x$enable_darshan_runtime" = xyes ; then
                       [-]) # this last part tells it to only check for presence
    fi
 
-   #AUTOPERF SS module
+   #AUTOPERF CXI module
    AC_ARG_ENABLE([apcxi-mod],
       [AS_HELP_STRING([--enable-apcxi-mod],
                       [Enables compilation and use of AUTOPERF CXI module (requires MPI)])],
@@ -325,7 +325,7 @@ if test "x$enable_darshan_runtime" = xyes ; then
       abssrcdir=$(readlink -f ${srcdir})
       AC_CHECK_HEADER([papi.h],
                       [with_papi=-lpapi],
-                      [AC_MSG_ERROR([Cannot find papi header required for Autoperf SS module])],
+                      [AC_MSG_ERROR([Cannot find papi header required for Autoperf CXI module])],
                       [])
       AC_CHECK_HEADER([${abssrcdir}/../modules/autoperf/apcxi/darshan-apcxi-log-format.h],
                       [],
@@ -795,7 +795,7 @@ if test "x$enable_darshan_runtime" = xyes ; then
            MPI-IO        module support  - $enable_mpiio_mod
            AUTOPERF MPI  module support  - $enable_apmpi_mod
            AUTOPERF XC   module support  - $enable_apxc_mod
-           AUTOPERF SS   module support  - $enable_apcxi_mod
+           AUTOPERF CXI  module support  - $enable_apcxi_mod
            HDF5          module support  - $enable_hdf5_mod
            PnetCDF       module support  - $enable_pnetcdf_mod
            BG/Q          module support  - $enable_bgq_mod
