@@ -514,6 +514,7 @@ execution time.
 | counter name | description
 | APSS_GROUP | group this router is on
 | APSS_CHASSIS | chassis this router is on
+| APSS_SLOT | slot this router is on
 | APSS_BLADE | blade this router is on
 | APSS_NODE | node connected to this router
 | APSS_WIP [0-7] | flits on VCs of x y tile for router-router ports
